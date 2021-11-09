@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Assembly script thing</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/vanillawc/wc-monaco-editor@1/index.js"></script>
+<script>
+  require([ "https://cdn.jsdelivr.net/npm/assemblyscript@latest/dist/sdk.js" ], ({ asc }) => {
+    asc.ready.then(() => {
+      console.log("Downloaded asc");
+      globalThis.asc = asc;
+    });
+  });
+
+</script>
+</head>
+<body>
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+<div style="overflow: hidden; height: 100vh;">
+  
+  <div style="width: 50%; height: 100%; float:left">
+    <wc-monaco-editor id="code-area" language="typescript" style="height: 100%;"></wc-monaco-editor>
+  </div>
+  <div style="width: 50%; height: 100%; float: right;">
+    <button id="run-button">Compile</button>  
+    <div id="status">Press Compile</div>
+    <canvas id="canvas"></canvas>
+  </div>
+</div>
+
+
+
+<script src="editor.js"></script>
+</body>
+</html>
