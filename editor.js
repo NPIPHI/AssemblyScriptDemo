@@ -4,8 +4,8 @@ const input_text = document.getElementById("code-area");
 const run_button = document.getElementById("run-button");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth/2;
-canvas.height = window.innerWidth/2;
+canvas.width = 1000;
+canvas.height = 1000;
 
 let instance = null;
 

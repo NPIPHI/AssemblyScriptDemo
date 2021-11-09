@@ -2,8 +2,8 @@ const canvas = document.getElementById("canvas");
 const status_text = document.getElementById("status");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth/2;
-canvas.height = window.innerHeight/2;
+canvas.width = 1000;
+canvas.height = 1000;
 
 let instance = null;
 
