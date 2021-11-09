@@ -97,7 +97,7 @@ return new Promise((resolve, reject)=>{
     const stderr = asc.createMemoryStream();
     asc.main([
         "main.ts",
-        "-Oz",
+        "-Os",
         "--runtime", "stub",
         "--binaryFile", "module.wasm",
         // "--textFile", "module.wat",
