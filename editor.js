@@ -58,7 +58,6 @@ export class Shape{
 
 window.onload = async ()=>{
     input_text.editor.setValue(`
-    
 import {Shape, Point} from "./shape";
 
 /*
@@ -76,9 +75,21 @@ class Point {
 //val goes in a sin wave from 0 to 1
 export function make_shape(val: f64): Shape {
     const pts: Point[] = [];
-    const num_points: f64 = val * 10 + 2;
-    for(let i: f64 = 0.0; i < num_points; i++){
-        pts[usize(i)] = new Point(val*50 * Math.sin(i/num_points * 6.28) + 50.0,val* 50 * Math.cos(i/num_points*6.28) + 50.0);
+    const n: f64 = 20;
+
+    for(let i = 0; i < n; i++){
+        const f: f64 = n;
+        let x1 = Math.cos(i/n*6.28);
+        let x2 = Math.cos(i/n*6.28+0.05);
+        let y1 = Math.sin(i/n*6.28);
+        let y2 = Math.sin(i/n*6.28+0.05);
+        let dx = 300;
+        let dy = 300;
+        let a = (val + 0.1)*100;
+        let b = (1 - val + 0.1)*100;
+
+        pts.push(new Point(x1*a+dx,y1*a+dy));
+        pts.push(new Point(x2*b+dx,y2*b+dy));
     }
     return new Shape(pts);
 }
