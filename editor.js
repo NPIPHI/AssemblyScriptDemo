@@ -14,7 +14,7 @@ import {ArrRet} from "./shape"
 import {make_shape} from "./module"
 
 export function main(val: f64): ArrRet {
-    __collect();
+    __reset();
     return make_shape(val).encode();
 }
 
@@ -97,8 +97,8 @@ return new Promise((resolve, reject)=>{
     const stderr = asc.createMemoryStream();
     asc.main([
         "main.ts",
-        "-O3",
-        "--runtime", "minimal",
+        "-Oz",
+        "--runtime", "stub",
         "--binaryFile", "module.wasm",
         // "--textFile", "module.wat",
         // "--sourceMap"
@@ -151,6 +151,10 @@ run_button.addEventListener("click", async ()=>{
     try {
     binary = await compile(input_text.editor.getValue());
     
+    // let a = document.createElement("a");
+    // a.href = window.URL.createObjectURL(new Blob([binary.buffer], {type: "octet/stream"}));
+    // a.download = "startup.wasm";
+    // a.click();
     } catch(e){
         status_text.innerHTML = e.stderr;
         instance = null;
