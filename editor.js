@@ -57,7 +57,6 @@ export class Shape{
 `
 
 window.onload = async ()=>{
-    try {
     input_text.editor.setValue(`
     
 import {Shape, Point} from "./shape";
@@ -84,7 +83,6 @@ export function make_shape(val: f64): Shape {
     return new Shape(pts);
 }
 `);
-    } catch(e){}
 
 
     let file = await fetch("startup.wasm");
