@@ -34,13 +34,10 @@ let frame_count = 0;
 function loop(){
     if(!instance) return;
     frame_count++;
-    let result = instance.exports.main((Math.sin(frame_count/100) + 1)/2);
-    status_text.innerHTML = "Mem: " + result;
-    const u32 = new Uint32Array(instance.exports.memory.buffer);
+    const ptr = instance.exports.run((Math.sin(frame_count/100) + 1)/2);
     const f64 = new Float64Array(instance.exports.memory.buffer);
-    const begin = u32[result/4]/8;
-    const len = u32[result/4 + 1];
-    const points_arr = f64.subarray(begin, begin + len);
+    const len = instance.exports.len();
+    const points_arr = f64.subarray(ptr/8, ptr/8 + len * 2);
 
     ctx.clearRect(0,0,1000,1000);
     ctx.fillStyle = '#f00';
@@ -53,6 +50,7 @@ function loop(){
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+    instance.exports.free(ptr);
 }
 
 function main_loop(){
